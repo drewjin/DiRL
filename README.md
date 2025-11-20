@@ -156,8 +156,8 @@ bash examples/eval.sh
 **Step 1: Prepare Training Data**
 
 While the full DiRL-8B-Instruct training data is not yet released, we provide lightweight datasets for quick experimentation:
-- [Light-OpenR1Math-SFT](https://huggingface.co/datasets/OpenMOSS-Team/Light-OpenR1Math-SFT): 2K SFT samples from OpenR1Math
-- [Light-MATH-RL](https://huggingface.co/datasets/OpenMOSS-Team/Light-MATH-RL): 4K RL samples from MATH
+- [Light-OpenR1Math-SFT](https://huggingface.co/datasets/Auraithm/Light-OpenR1Math-SFT): 2K SFT samples from OpenR1Math
+- [Light-MATH-RL](https://huggingface.co/datasets/Auraithm/Light-MATH-RL): 4K RL samples from MATH
 
 > **Tip:** For initial experimentation, we recommend starting with **max_new_tokens** of 2K to reduce training time and resource requirements.
 
