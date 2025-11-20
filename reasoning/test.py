@@ -42,7 +42,7 @@ if __name__ == '__main__':
             top_k=50,
             temperature=1.0,
             do_sample=False, # greedy decoding
-            max_new_tokens=32768,
+            max_new_tokens=8192,
             skip_special_tokens=False,
             repetition_penalty=1.0,
         )
