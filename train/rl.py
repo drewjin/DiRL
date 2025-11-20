@@ -1132,6 +1132,10 @@ def train():
                         f"| Reward={float(sum(raw_rewards))/len(raw_rewards):.4f} "
                         f"| Ent={entropy.mean().item():.4f} | KL={kl_loss.item():.6f}"
                     )
+                
+                # 删除变量并清理GPU缓存，防止OOM
+                del loss_lm, kl_loss, entropy, extended_input_ids, p_mask, tok_idx_ext, labels, old_lp, ref_lp
+                torch.cuda.empty_cache()
 
             if config.training.max_grad_norm is not None:
                 accelerator.clip_grad_norm_(model.parameters(), config.training.max_grad_norm)
