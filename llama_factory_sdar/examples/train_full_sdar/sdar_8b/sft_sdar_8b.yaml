@@ -1,5 +1,5 @@
 ### model
-model_name_or_path: xxx/SDAR-8B-Chat
+model_name_or_path: /inspire/hdd/project/high-dimensionaldata/wanjiaxin-253108030048/project/dlm/test/DiRL/public/SDAR-8B-Chat
 train_from_scratch: false
 trust_remote_code: true
 
@@ -15,7 +15,7 @@ deepspeed: examples/deepspeed/ds_z2_config.json
 # gradient_checkpointing: true
 
 ### dataset
-dataset: s1k
+dataset: glm_openr1math
 template: qwen3 # qwen2_vl
 block_length: 4
 cutoff_len: 10240

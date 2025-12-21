@@ -49,3 +49,7 @@ outputs/
 .DS_Store
 Thumbs.db
 
+public
+data
+cache
+.sii

@@ -99,6 +99,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 accelerate launch \
   training.batch_size_lm=${BS} \
   training.mini_batch_size=${MINI_BS} \
   training.num_iterations=${ITERATIONS} \
+  training.collate=${COLLATE} \
   rollout.start_with_think=${THINK} \
   rollout.num_task_per_step=${NUM_TASK_PER_STEP} \
   rollout.num_response_per_task=${NUM_RESPONSE_PER_TASK} \

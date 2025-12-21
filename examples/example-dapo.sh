@@ -1,5 +1,4 @@
-cd /inspire/hdd/global_user/liuxiaoran-240108120089/zhuying/DiRL
-ps -ef | grep python | awk '{print $2}' | xargs kill -9 # 慎重
+cd xxx/DiRL
 export MODEL=sdar
 export DATASET=BigMath_train
 export TRAIN_DATASET=BigMath_train

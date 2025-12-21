@@ -722,7 +722,7 @@ def train():
                 print(f"\n=== Collect Training Data Debug ===")
                 print(f"Input: B={B}, L={L}, block_size={block_size}")
 
-            if config.training.method == "DiRL":
+            if config.training.method == "DiPO":
                 step_map = step_map_tensor
                 assert step_map.shape == (B, L)
 
@@ -1823,7 +1823,7 @@ def save_checkpoint(model, tokenizer, config, accelerator, name):
 
         # 复制自定义源码文件
         model_path = config.model.pretrained_model
-        for pattern in ("modeling_*.py", "configuration_*.py", "tokenization_*.py", "processing_*.py"):
+        for pattern in ("modeling_*.py", "configuration_*.py", "tokenization_*.py", "processing_*.py", "fused_linear_*.py"):
             for fn in glob.glob(os.path.join(model_path, pattern)):
                 dst = os.path.join(save_dir, os.path.basename(fn))
                 if not os.path.exists(dst):
