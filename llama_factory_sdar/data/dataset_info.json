@@ -11,5 +11,18 @@
       "user_tag": "user",
       "assistant_tag": "assistant"
     }
+  },
+  "glm_openr1math": {
+    "file_name": "glm_openr1math-sharegpt.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "messages"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
   }
 }

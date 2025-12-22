@@ -5,7 +5,6 @@ deepspeed_config:
   zero3_init_flag: false
 distributed_type: DEEPSPEED
 main_training_function: main
-mixed_precision: bf16
 rdzv_backend: static
 same_network: true
 tpu_env: []

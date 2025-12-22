@@ -1,4 +1,4 @@
-cd xxx/DiRL
+cd llama_factory_sdar
 
 # 分布式环境变量（兼容 torchrun / accelerate / Slurm 等）
 export MASTER_ADDR=${MASTER_ADDR:-"127.0.0.1"}
@@ -21,7 +21,7 @@ export TRANSFORMERS_OFFLINE=1
 export HF_HUB_OFFLINE=1
 
 # 添加模型目录到 PYTHONPATH，解决自定义模型配置导入问题
-MODEL_DIR=${MODEL_DIR:-"/inspire/hdd/global_user/liuxiaoran-240108120089/zhuying/SDAR-8B-Chat"}
+MODEL_DIR=${MODEL_DIR:-"xxx/SDAR-8B-Chat"}
 export PYTHONPATH="${MODEL_DIR}:${PYTHONPATH}"
 
 # 清理冲突变量
@@ -44,7 +44,7 @@ torchrun \
     --nproc_per_node ${NUM_GPUS_PER_NODE} \
     --master_addr ${MASTER_ADDR} \
     --master_port ${MASTER_PORT} \
-    llama_factory_sdar/src/llamafactory/launcher.py \
-    llama_factory_sdar/examples/train_full_sdar/sdar_8b/sft_sdar_8b.yaml
+    src/llamafactory/launcher.py \
+    examples/train_full_sdar/sdar_8b/sft_sdar_8b.yaml
 
 echo "SFT training finished ..."
