@@ -350,7 +350,7 @@ def train():
             client,
             config.dataset.train_dataset, step, config,
             model_path, model_name, tokenizer, accelerator,
-            normalize=True, filter=False, mode="train", split_rank=False, reward_funcs=config.training.reward_funcs,
+            normalize=True, filter=True, mode="train", split_rank=False, reward_funcs=config.training.reward_funcs,
             data_cursor=data_cursor,  # 传入当前cursor，顺序遍历数据集
             dynamic_threshold=current_dynamic_threshold  # 传入动态阈值
         )

@@ -114,7 +114,7 @@ def sample(client, model_name, gen_config, prompts, k_sample=1, config=None, acc
         batch_prompts.extend([prompt] * k_sample)
     
     # 分批处理，避免单次请求过大
-    max_batch_size = getattr(config.rollout if config else None, 'api_batch_size', 1)
+    max_batch_size = getattr(config.rollout if config else None, 'api_batch_size', 2048)
     
     # 并发线程数（同时发送的批次数）
     max_workers = getattr(config.rollout if config else None, 'api_max_workers', 16)
