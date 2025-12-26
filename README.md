@@ -6,7 +6,7 @@
 
 <!-- <h1>DiRL</h1> -->
 
-<h2>An Efficient Training Framework for Diffusion Language Models</h2>
+<h2>An Efficient Post-Training Framework for Diffusion Language Models</h2>
 
 <p>
 <b>Ying Zhu</b><sup>1,2,3</sup>, <b>Jiaxin Wan</b><sup>2</sup>, <b>Xiaoran Liu</b><sup>1,2,3</sup>, <b>Siyanag He</b><sup>1,2,3</sup>, <b>Qiqi Wang</b><sup>1,2,3</sup>,<br>
@@ -258,7 +258,7 @@ If you find our work helpful, please consider citing:
 
 ```bibtex
 @misc{zhu2025dirl,
-  title={DiRL: An Efficient Training Framework for Diffusion Language Models},
+  title={DiRL: An Efficient Post-Training Framework for Diffusion Language Models},
   author={Zhu, Ying and Wan, Jiaxin and Liang, Tianyi and Guo, Xu and Liu, Xiaoran and Huang, Zengfeng and He, Ziwei and Qiu, Xipeng},
   year={2025},
   institution={Fudan University, Shanghai Innovation Institute},
