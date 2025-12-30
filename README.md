@@ -24,7 +24,10 @@
 </div>
 
 <p align="center">
-  <a href="paper/DiRL.pdf">
+  <a href="https://arxiv.org/abs/2512.22234">
+    <img src="https://img.shields.io/badge/arXiv-2512.22234-b31b1b.svg" alt="Paper on arXiv"/>
+  </a>
+  <a href="https://arxiv.org/pdf/2512.22234.pdf">
     <img src="https://img.shields.io/badge/Paper-PDF-red.svg" alt="PDF"/>
   </a>
   <a href="https://github.com/OpenMOSS/DiRL">
@@ -61,7 +64,7 @@ We introduce **DiRL**, an open-source training framework for Diffusion Language 
 
 ## 📰 News
 
-- **[2025.12]** 🚀 Major framework update! We now support **Flex-Attention** for faster training, **LMDeploy API server** and **real-time policy updates** to enable **online RL**, and support **DAPO algorithm**. We also release the [technical report](paper/DiRL.pdf) and [training datasets](https://huggingface.co/collections/Auraithm/dirl).
+- **[2025.12]** 🚀 Major framework update! We now support **Flex-Attention** for faster training, **LMDeploy API server** and **real-time policy updates** to enable **online RL**, and support **DAPO algorithm**. We also release the [technical report](https://arxiv.org/abs/2512.22234) and [training datasets](https://huggingface.co/collections/Auraithm/dirl).
 
 - **[2025.11]** 🎉 We release **DiRL**, an open-source post-training framework for Diffusion Language Models! Using this framework, we train **DiRL-8B-Instruct**, which achieves **state-of-the-art** results among 8B models. Released [code](https://github.com/OpenMOSS/DiRL) and [model](https://huggingface.co/OpenMOSS-Team/DiRL-8B-Instruct).
 
@@ -265,9 +268,11 @@ If you find our work helpful, please consider citing:
 ```bibtex
 @misc{zhu2025dirl,
   title={DiRL: An Efficient Post-Training Framework for Diffusion Language Models},
-  author={Zhu, Ying and Wan, Jiaxin and Liang, Tianyi and Guo, Xu and Liu, Xiaoran and Huang, Zengfeng and He, Ziwei and Qiu, Xipeng},
+  author={Zhu, Ying and Wan, Jiaxin and Liu, Xiaoran and He, Siyanag and Wang, Qiqi and Guo, Xu and Liang, Tianyi and Huang, Zengfeng and He, Ziwei and Qiu, Xipeng},
   year={2025},
-  institution={Fudan University, Shanghai Innovation Institute},
-  url={https://github.com/OpenMOSS/DiRL}
+  eprint={2512.22234},
+  archivePrefix={arXiv},
+  primaryClass={cs.CL},
+  url={https://arxiv.org/abs/2512.22234}
 }
 ```
