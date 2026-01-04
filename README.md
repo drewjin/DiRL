@@ -84,7 +84,7 @@ We develop and release an open-source diffusion post-training framework for DLLM
 ```bash
 git clone https://github.com/OpenMOSS/DiRL.git
 cd DiRL
-pip install -r requirements.txt
+pip install -e .
 ```
 
 If `flash-attn` installation fails, you can download the pre-built wheel file and install it manually:

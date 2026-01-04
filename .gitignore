@@ -50,6 +50,9 @@ outputs/
 Thumbs.db
 
 public
-data
+./data
 cache
 .sii
+.venv
+./*.py
+./*.csv
