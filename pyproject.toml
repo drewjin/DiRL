@@ -9,7 +9,6 @@ dependencies = [
     "datasets==3.6.0",
     "deepspeed==0.16.9",
     "fastapi==0.121.1",
-    "flash-attn",
     "gradio>=6.2.0",
     "huggingface-hub==0.35.3",
     "jetengine>=0.1.0",
@@ -44,15 +43,11 @@ dependencies = [
     "uvicorn==0.38.0",
     "wandb>=0.23.0",
     "zmq>=0.0.0",
+    "flash-attn",
 ]
 
 [tool.uv.sources]
-flash-attn = { path = "flash_attn-2.8.3+cu12torch2.8cxx11abiFALSE-cp312-cp312-linux_x86_64.whl" }
 lmdeploy = { workspace = true }
-
-[[tool.uv.index]]
-url = "http://nexus.sii.shaipower.online/repository/pypi/simple"
-default = true
 
 [tool.uv.workspace]
 members = [
