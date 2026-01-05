@@ -22,7 +22,7 @@ export HF_HUB_OFFLINE=1
 
 # 添加模型目录到 PYTHONPATH，解决自定义模型配置导入问题
 MODEL_DIR=${MODEL_DIR:-"xxx/SDAR-8B-Chat"}
-export PYTHONPATH="${MODEL_DIR}:${PYTHONPATH}"
+export PYTHONPATH="${MODEL_DIR}:$(pwd)/src:${PYTHONPATH}"
 
 # 清理冲突变量
 unset NCCL_BLOCKING_WAIT
