@@ -9,7 +9,7 @@
 <h2>An Efficient Post-Training Framework for Diffusion Language Models</h2>
 
 <p>
-<b>Ying Zhu</b><sup>1,2,3</sup>, <b>Jiaxin Wan</b><sup>2</sup>, <b>Xiaoran Liu</b><sup>1,2,3</sup>, <b>Siyanag He</b><sup>1,2,3</sup>, <b>Qiqi Wang</b><sup>1,2,3</sup>,<br>
+<b>Ying Zhu</b><sup>1,2,3</sup>, <b>Jiaxin Wan</b><sup>2</sup>, <b>Xiaoran Liu</b><sup>1,2,3</sup>, <b>Siyang He</b><sup>1,2,3</sup>, <b>Qiqi Wang</b><sup>1,2,3</sup>,<br>
 <b>Xu Guo</b><sup>1,2</sup>, <b>Tianyi Liang</b><sup>2,3</sup>, <b>Zengfeng Huang</b><sup>1,2</sup>, <b>Ziwei He</b><sup>2,3,†</sup>, <b>Xipeng Qiu</b><sup>1,2,†</sup>
 </p>
 
