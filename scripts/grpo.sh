@@ -30,8 +30,17 @@ unset NCCL_ASYNC_ERROR_HANDLING
 # RL 参数（可通过环境变量传入）
 SCRIPT_NAME="${SCRIPT_NAME:-rl_sdar}"
 RUN_NAME=WANDB_${SCRIPT_NAME}
+
+# ========= 统一 checkpoint 保存前缀（基于工作区路径推导） =========
+# 默认把所有实验的 ckpt 都收敛到 <repo_root>/temp_ckpt/ 下。
+# 你之后只需要把 temp_ckpt 做软链接到大盘/共享盘即可，脚本无需再改。
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+CKPT_ROOT="${CKPT_ROOT:-${REPO_ROOT}/temp_ckpt}"
+PROJECT_DIR="${CKPT_ROOT}/${SCRIPT_NAME}_lmdeploy"
+mkdir -p "${PROJECT_DIR}"
+
 export WANDB_PROJECT=${RUN_NAME}
-export WANDB_DIR=${WANDB_PROJECT}
+export WANDB_DIR="${PROJECT_DIR}/wandb"
 mkdir -p "$WANDB_DIR"
 export WANDB_MODE=offline
 
@@ -87,7 +96,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 accelerate launch \
   train/grpo.py \
   config=configs/rl.yaml \
   model.pretrained_model=${PRETRAINED_MODEL} \
-  experiment.project=${SCRIPT_NAME}_lmdeploy \
+  experiment.project=${PROJECT_DIR} \
   experiment.cursor=${CUSOR} \
   experiment.num_nodes=${NUM_MACHINES} \
   experiment.save_every=${SAVE_EVERY} \
