@@ -43,7 +43,7 @@ dependencies = [
     "uvicorn==0.38.0",
     "wandb>=0.23.0",
     "zmq>=0.0.0",
-    "flash-attn",
+    # "flash-attn",
 ]
 
 [tool.uv.sources]
