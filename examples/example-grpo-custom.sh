@@ -8,7 +8,7 @@ export CKPT_ROOT=/root/workspace/jyj/DiRL/temp_ckpts
 # ===== 基础配置参数 =====
 export MODEL=sdar                           # 模型架构类型，默认为 sdar (Diffusion LM)
 export SCRIPT_NAME=dirl_grpo_experiment_custom_sft_model     # 实验名称，用于 WandB 记录和模型保存子目录名
-export PRETRAINED_MODEL=${CKPT_PATH}/${CKPT_NAME} # 预训练/SFT 后的模型路径 (建议使用绝对路径)
+export PRETRAINED_MODEL=${CKPT_PATH}/${CKPT_NAME}/full/sft # 预训练/SFT 后的模型路径 (建议使用绝对路径)
 
 # ===== 数据集配置 =====
 export DATASET=BigMath_train                # 原始数据集标识

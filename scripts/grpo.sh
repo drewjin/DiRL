@@ -55,7 +55,7 @@ export WANDB_MODE=offline
 # 这里默认允许 Ray 使用磁盘作为 object store（会慢一点，但能跑起来）。
 export RAY_OBJECT_STORE_ALLOW_SLOW_STORAGE=${RAY_OBJECT_STORE_ALLOW_SLOW_STORAGE:-1}
 # 把 Ray 的临时目录放到实验目录下，避免写到系统盘（可按需改到大盘路径）
-export RAY_TMPDIR=${RAY_TMPDIR:-${PROJECT_DIR}/ray_tmp}
+export RAY_TMPDIR=${RAY_TMPDIR:-"/root/workspace/jyj/DiRL/ray_tmp"}
 mkdir -p "${RAY_TMPDIR}"
 # 可选：限制 Ray object store 最大值，避免默认 80GB（单位：bytes）
 export RAY_DEFAULT_OBJECT_STORE_MAX_MEMORY_BYTES=${RAY_DEFAULT_OBJECT_STORE_MAX_MEMORY_BYTES:-5000000000}
