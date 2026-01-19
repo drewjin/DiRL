@@ -1,16 +1,20 @@
 #!/bin/bash
 # 运行前请确保在项目根目录 DiRL 下运行
 
+CKPT_PATH=/root/workspace/jyj/SDAR/training/llama_factory_sdar/temp/sdar_ckpt
+CKPT_NAME=sdar_8b_b32_ga1_lr2e-5_math_glm_openr1math
+export CKPT_ROOT=/root/workspace/jyj/DiRL/temp_ckpts
+
 # ===== 基础配置参数 =====
 export MODEL=sdar                           # 模型架构类型，默认为 sdar (Diffusion LM)
-export SCRIPT_NAME=dirl_grpo_experiment     # 实验名称，用于 WandB 记录和模型保存子目录名
-export PRETRAINED_MODEL=public/SDAR-8B-Chat # 预训练/SFT 后的模型路径 (建议使用绝对路径)
+export SCRIPT_NAME=dirl_grpo_experiment_custom_sft_model     # 实验名称，用于 WandB 记录和模型保存子目录名
+export PRETRAINED_MODEL=${CKPT_PATH}/${CKPT_NAME} # 预训练/SFT 后的模型路径 (建议使用绝对路径)
 
 # ===== 数据集配置 =====
 export DATASET=BigMath_train                # 原始数据集标识
 export TRAIN_DATASET=MATH_train             # RL 训练使用的题目数据集文件名 (位于 data/ 目录下)
 export EVAL_DATASET=MATH500                 # 评估模型性能的测试数据集文件名
-export CUSOR=0                              # 数据集遍历游标：从第几条题目开始采样 (断点续训时很有用)
+export CURSOR=0                              # 数据集遍历游标：从第几条题目开始采样 (断点续训时很有用)
 export CURRENT_EPOCH=1                      # 当前训练的 Epoch 轮数计数
 
 # ===== RL (GRPO) 核心算法参数 =====
@@ -29,7 +33,7 @@ export SAVE_EVERY=1                         # 每隔多少个 Step 保存一次�
 export SHRINK=1                             # 扩散模型特有：去噪步骤的收缩/压缩倍率，1 为标准配置
 
 # ===== 采样 (Rollout) 生成参数 (扩散模型特有) =====
-export BLOCK_SIZE=4                         # 每个扩散 Block 包含的 token 数量
+export BLOCK_SIZE=32                        # 每个扩散 Block 包含的 token 数量
 export MAX_TOKEN=8192                       # 最大生成长度限制
 export TOP_K=50                             # 采样时的 Top-K 过滤
 export TOP_P=1.0                            # 采样时的 Top-P (Nucleus) 过滤
@@ -50,4 +54,4 @@ export EVAL_DYNAMIC_THRESHOLD=0.90
 export EVAL_TEMPERATURE=1.0
 
 # 启动训练脚本
-bash scripts/grpo.sh
+scripts/grpo.sh
