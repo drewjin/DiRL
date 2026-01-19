@@ -49,6 +49,17 @@ export WANDB_DIR="${PROJECT_DIR}/wandb"
 mkdir -p "$WANDB_DIR"
 export WANDB_MODE=offline
 
+# ========= Ray / /dev/shm 兼容性（lmdeploy 的推理引擎会用 Ray） =========
+# 你的环境里 /dev/shm 很小（例如 Docker 默认 64MB），Ray 默认会尝试分配很大的 object store
+# 导致报错：object store size exceeds /dev/shm size。
+# 这里默认允许 Ray 使用磁盘作为 object store（会慢一点，但能跑起来）。
+export RAY_OBJECT_STORE_ALLOW_SLOW_STORAGE=${RAY_OBJECT_STORE_ALLOW_SLOW_STORAGE:-1}
+# 把 Ray 的临时目录放到实验目录下，避免写到系统盘（可按需改到大盘路径）
+export RAY_TMPDIR=${RAY_TMPDIR:-${PROJECT_DIR}/ray_tmp}
+mkdir -p "${RAY_TMPDIR}"
+# 可选：限制 Ray object store 最大值，避免默认 80GB（单位：bytes）
+export RAY_DEFAULT_OBJECT_STORE_MAX_MEMORY_BYTES=${RAY_DEFAULT_OBJECT_STORE_MAX_MEMORY_BYTES:-5000000000}
+
 PRETRAINED_MODEL=${PRETRAINED_MODEL:-xxx/SDAR-8B-Chat}
 NUM_TASK_PER_STEP=${NUM_TASK_PER_STEP:-128}
 NUM_RESPONSE_PER_TASK=${NUM_RESPONSE_PER_TASK:-8}
