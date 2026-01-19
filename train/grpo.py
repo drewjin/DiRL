@@ -123,10 +123,16 @@ def train():
     config = get_config()
 
     project_name = config.experiment.project
+    # NOTE:
+    # - experiment.project: 仅用于实验命名 / tracker(wandb) 标识，必须是合法字符串（不能包含 / 等路径字符）
+    # - experiment.output_dir: 真实输出目录（ckpt、日志、配置文件等）保存位置
+    output_dir = getattr(config.experiment, "output_dir", None) or project_name
+    output_dir = str(output_dir)
+
     if config.experiment.current_step == 1:
         pretrained_model = config.model.pretrained_model
     else:
-        pretrained_model = config.experiment.prefix_dir + project_name + f"/ckpt/step-{config.experiment.current_step-1}"
+        pretrained_model = str(Path(output_dir) / "ckpt" / f"step-{config.experiment.current_step-1}")
     model_name = "optimized_model"
 
     # Enable TF32 on Ampere GPUs
@@ -135,7 +141,7 @@ def train():
         torch.backends.cudnn.benchmark = True
         torch.backends.cudnn.deterministic = False
 
-    config.experiment.logging_dir = str(Path(config.experiment.project) / "logs")
+    config.experiment.logging_dir = str(Path(output_dir) / "logs")
     
     # 先用默认值初始化 Accelerator（为了获取 num_processes）
     temp_accelerator = Accelerator(
@@ -222,7 +228,7 @@ def train():
         config.wandb.run_id = run_id
 
     wandb_init_kwargs = dict(
-        name=config.experiment.project,
+        name=project_name,
         id=run_id,
         resume=resume_wandb_run,
         entity=config.wandb.get("entity", None),
@@ -232,14 +238,14 @@ def train():
     wandb_config.pop("experiment.resume_from_checkpoint", None)
 
     accelerator.init_trackers(
-        config.experiment.project,
+        project_name,
         config=wandb_config,
         init_kwargs={"wandb": wandb_init_kwargs},
     )
 
     if accelerator.is_main_process:
-        os.makedirs(config.experiment.project, exist_ok=True)
-        config_path = Path(config.experiment.project) / "config.yaml"
+        os.makedirs(output_dir, exist_ok=True)
+        config_path = Path(output_dir) / "config.yaml"
         logging.info(f"Saving config to {config_path}")
         OmegaConf.save(config, config_path)
 
@@ -294,7 +300,7 @@ def train():
         #########################
 
         if step != config.experiment.current_step or config.experiment.current_step != 1:
-            model_path = config.experiment.prefix_dir + project_name + f"/ckpt/step-{step-1}"
+            model_path = str(Path(output_dir) / "ckpt" / f"step-{step-1}")
         else:
             model_path = pretrained_model
         logger.info(f"Loading model from {model_path}")
@@ -1664,7 +1670,7 @@ def train():
             # ========== 开始 Eval 阶段计时 ==========
             eval_start_time = time.time()
             logger.info(f"Starting evaluation on {config.dataset.eval_dataset}...")
-            eval_model_path = config.experiment.prefix_dir + project_name + f"/ckpt/step-{step}"
+            eval_model_path = str(Path(output_dir) / "ckpt" / f"step-{step}")
             
             eval_data = rollout_sampling_eval(
                 client,
@@ -1794,7 +1800,9 @@ def save_checkpoint(model, tokenizer, config, accelerator, name):
     from pathlib import Path
     import time, json, shutil, os, glob
 
-    output_dir = Path(config.experiment.project)
+    project_name = config.experiment.project
+    output_dir = getattr(config.experiment, "output_dir", None) or project_name
+    output_dir = Path(str(output_dir))
     output_dir.mkdir(parents=True, exist_ok=True)
 
     accelerator.wait_for_everyone()

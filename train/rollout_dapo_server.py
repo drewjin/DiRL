@@ -647,6 +647,9 @@ def rollout_sampling_eval(client, dataset_name, epoch, config, model_path, model
         random.seed(config.training.seed)
 
     project_name = config.experiment.project
+    # experiment.project: 实验名；experiment.output_dir: 真实输出目录（可能是绝对路径）
+    output_dir = getattr(config.experiment, "output_dir", None) or project_name
+    output_dir = str(output_dir)
     reward = config.dataset.data_type
     math_judge = orms['accuracy']()
     cosine_reward = orms['cosine'](cosine_max_len=config.rollout.max_token, accuracy_orm=math_judge)
@@ -909,7 +912,7 @@ def rollout_sampling_eval(client, dataset_name, epoch, config, model_path, model
             "pass_at_k": pass_at_k_rate,
             "data": all_data_flattened
         }
-        output_file_name = project_name + "/temp_data/outputs-" + outputs_name + ".json"
+        output_file_name = os.path.join(output_dir, "temp_data", "outputs-" + outputs_name + ".json")
         os.makedirs(os.path.dirname(output_file_name), exist_ok=True)
         with open(output_file_name, "w", encoding="utf-8") as f:
             json.dump(output_data, f, indent=2, ensure_ascii=False)

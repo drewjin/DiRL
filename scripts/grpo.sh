@@ -101,7 +101,8 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 accelerate launch \
   train/grpo.py \
   config=configs/rl.yaml \
   model.pretrained_model=${PRETRAINED_MODEL} \
-  experiment.project=${PROJECT_DIR} \
+  experiment.project=${SCRIPT_NAME}_lmdeploy \
+  experiment.output_dir=${PROJECT_DIR} \
   experiment.cursor=${CURSOR} \
   experiment.num_nodes=${NUM_MACHINES} \
   experiment.save_every=${SAVE_EVERY} \
