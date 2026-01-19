@@ -3,6 +3,7 @@
 
 CKPT_PATH=/root/workspace/jyj/SDAR/training/llama_factory_sdar/temp/sdar_ckpt
 CKPT_NAME=sdar_8b_b32_ga1_lr2e-5_math_glm_openr1math
+export CKPT_ROOT=/root/workspace/jyj/DiRL/temp_ckpts
 
 # ===== 基础配置参数 =====
 export MODEL=sdar                           # 模型架构类型，默认为 sdar (Diffusion LM)
