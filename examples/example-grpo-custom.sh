@@ -14,7 +14,7 @@ export PRETRAINED_MODEL=${CKPT_PATH}/${CKPT_NAME} # 预训练/SFT 后的模型�
 export DATASET=BigMath_train                # 原始数据集标识
 export TRAIN_DATASET=MATH_train             # RL 训练使用的题目数据集文件名 (位于 data/ 目录下)
 export EVAL_DATASET=MATH500                 # 评估模型性能的测试数据集文件名
-export CUSOR=0                              # 数据集遍历游标：从第几条题目开始采样 (断点续训时很有用)
+export CURSOR=0                              # 数据集遍历游标：从第几条题目开始采样 (断点续训时很有用)
 export CURRENT_EPOCH=1                      # 当前训练的 Epoch 轮数计数
 
 # ===== RL (GRPO) 核心算法参数 =====
@@ -54,4 +54,4 @@ export EVAL_DYNAMIC_THRESHOLD=0.90
 export EVAL_TEMPERATURE=1.0
 
 # 启动训练脚本
-bash scripts/grpo.sh
+scripts/grpo.sh
